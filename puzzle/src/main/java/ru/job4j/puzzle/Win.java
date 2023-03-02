@@ -25,8 +25,8 @@ public class Win {
 
     public static boolean checkVertical(int[][] board, int column) {
         boolean result = true;
-        for (int[] chars : board) {
-            if (chars[column] != 1) {
+        for (int[] ints : board) {
+            if (ints[column] != 1) {
                 result = false;
                 break;
             }
