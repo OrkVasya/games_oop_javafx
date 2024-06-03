@@ -1,7 +1,7 @@
 package ru.job4j.chess;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
 import java.util.Arrays;
 
 public final class Logic {
@@ -16,11 +16,20 @@ public final class Logic {
             throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
         int index = findBy(source);
         Cell[] steps = figures[index].way(dest);
-        free(steps);
+        if (!free(steps)) {
+            throw new OccupiedCellException("Cell is occupied by another figure");
+        }
         figures[index] = figures[index].copy(dest);
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
+        for (Cell step : steps) {
+            for (Figure figure : figures) {
+                if (figure != null && figure.position().equals(step)) {
+                    throw new OccupiedCellException("Cell is occupied by another figure");
+                }
+            }
+        }
         return true;
     }
 
