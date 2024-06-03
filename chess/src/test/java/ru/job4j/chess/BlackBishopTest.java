@@ -8,7 +8,6 @@ import ru.job4j.chess.figures.black.BishopBlack;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class BlackBishopTest {
 
     @Test
